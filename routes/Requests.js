@@ -1,5 +1,6 @@
 const express = require('express');
 const RequestsService = require('../services/requests');
+const auth = require('../utils/middleware/auth');
 
 function requestsApi(app) {
   const router = express.Router();
@@ -7,7 +8,17 @@ function requestsApi(app) {
 
   app.use('/api/requests', router);
 
-  router.get('/', async (req, res) => {
+  router.get('/', auth, async (req, res) => {
+    const requests = await requestsService.getRequests({
+      curp: req.usuario.id,
+    });
+
+    res.json({
+      data: requests,
+      message: 'Requests listed',
+    });
+  });
+  router.get('/all', auth, async (req, res) => {
     const requests = await requestsService.getRequests();
 
     res.json({
@@ -24,9 +35,13 @@ function requestsApi(app) {
       message: 'Request retrieved',
     });
   });
-  router.post('/', async (req, res) => {
+  router.post('/', auth, async (req, res) => {
     const request = req.body;
-    const requestCreated = await requestsService.createRequest(request);
+
+    const requestCreated = await requestsService.createRequest(
+      request,
+      req.usuario.id
+    );
 
     res.json({
       data: requestCreated,
