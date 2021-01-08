@@ -47,44 +47,24 @@ class UsersService {
     return usuarioDG || {};
   }
   async createUser(user) {
-    const {
-      curp,
-      nombre,
-      apellidos,
-      email,
-      tipoUsuario,
-      password,
-      pregunta1,
-      pregunta2,
-      respuesta1,
-      respuesta2,
-      alumno,
-      profesor,
-    } = user;
+    const { password, tipoUsuario, alumno, profesor, curp } = user;
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
       await UsuarioDG.create({
-        curp,
-        nombre,
-        apellidos,
-        email,
-        tipoUsuario,
+        ...user,
       });
       await UsuarioLogin.create({
+        ...user,
         password: hashedPassword,
-        pregunta1,
-        pregunta2,
-        respuesta1,
-        respuesta2,
-        curp,
       });
-      if (tipoUsuario === 'alumno') {
+      if (tipoUsuario === 'Alumno') {
         await Alumno.create({
           ...alumno,
           curp,
         });
-      } else if (tipoUsuario === 'profesor') {
+      } else if (tipoUsuario === 'Profesor') {
         await Profesor.create({
           ...profesor,
           curp,
