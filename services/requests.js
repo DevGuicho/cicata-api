@@ -6,7 +6,6 @@ class RequestsService {
   constructor() {}
 
   async getRequests(query) {
-    /* const requests = await Promise.resolve(requestsMock); */
     const requests = await Solicitud.findAll({
       include: [Doctorado, Maestria],
       where: query,
@@ -37,25 +36,11 @@ class RequestsService {
     return request || [];
   }
   async createRequest(request, curp) {
-    /* const requestCreated = await Promise.resolve(requestsMock[0]); */
-    const {
-      convocatoria,
-      fechaSolicitud,
-      isSubmmited,
-      state,
-      observaciones,
-      maestria,
-      doctorado,
-    } = request;
-
     const requestCreated = await Solicitud.create({
-      convocatoria,
-      fechaSolicitud,
-      isSubmmited,
-      state,
-      observaciones,
+      ...request,
       curp,
     });
+    const { maestria, doctorado } = request;
     if (request.maestria) {
       await Maestria.create({
         ...maestria,
@@ -66,31 +51,27 @@ class RequestsService {
         ...doctorado,
         solicitudId: requestCreated.dataValues.id,
       });
+    } else {
+      return { solicitudIdRechazada: requestCreated.dataValues.id };
     }
-    return requestCreated || {};
+    return requestCreated;
   }
   async updateRequest(id, request) {
-    /* const { maestria, doctorado } = request; */
-
-    /* delete requestCopy.maestria;
-    delete requestCopy.doctorado; */
-
+    const { maestria, doctorado } = request;
     const requestUpdated = await Solicitud.update(request, {
       where: {
-        id: id,
+        id,
       },
     });
-    /* if (request.maestria) {
-      await Maestria.update(
-        maestria,
-
-        { where: { solicitudId: requestUpdated.dataValues.id } }
-      );
+    if (request.maestria) {
+      await Maestria.update(maestria, {
+        where: { solicitudId: id },
+      });
     } else if (request.doctorado) {
       await Doctorado.update(doctorado, {
-        where: { solicitudId: requestUpdated.dataValues.id },
+        where: { solicitudId: id },
       });
-    } */
+    }
 
     return requestUpdated || {};
   }

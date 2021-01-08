@@ -28,7 +28,7 @@ class UsersService {
       where: { curp },
       include: [UsuarioLogin, Alumno, Profesor],
     });
-
+    if (!usuarioDG) return {};
     if (usuarioDG.alumno === null) {
       delete usuarioDG.dataValues.alumno;
     }

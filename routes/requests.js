@@ -1,6 +1,7 @@
 const express = require('express');
 const RequestsService = require('../services/requests');
 const auth = require('../utils/middleware/auth');
+const boom = require('@hapi/boom');
 
 function requestsApi(app) {
   const router = express.Router();
@@ -26,7 +27,7 @@ function requestsApi(app) {
       message: 'Requests listed',
     });
   });
-  router.get('/:id', async (req, res) => {
+  router.get('/:id', auth, async (req, res) => {
     const { id } = req.params;
     const request = await requestsService.getRequest(id);
 
@@ -35,22 +36,26 @@ function requestsApi(app) {
       message: 'Request retrieved',
     });
   });
-  router.post('/', auth, async (req, res) => {
+  router.post('/', auth, async (req, res, next) => {
     const request = req.body;
 
     const requestCreated = await requestsService.createRequest(
       request,
       req.usuario.id
     );
+    if (requestCreated.solicitudIdRechazada) {
+      await requestsService.deleteRequest(requestCreated.solicitudIdRechazada);
+      return next(boom.internal('Hubo un error'));
+    }
 
     res.json({
       data: requestCreated,
       message: 'Request created',
     });
   });
-  router.put('/:id', async (req, res) => {
+  router.put('/:id', auth, async (req, res) => {
     const { id } = req.params;
-    const { request } = req.body;
+    const request = req.body;
 
     const requestUpdated = await requestsService.updateRequest(id, request);
 
@@ -59,7 +64,7 @@ function requestsApi(app) {
       message: 'Request Updated',
     });
   });
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:id', auth, async (req, res) => {
     const { id } = req.params;
     const requestDeleted = await requestsService.deleteRequest(id);
     res.json({

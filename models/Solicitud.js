@@ -6,21 +6,72 @@ const Maestria = require('./Maestria');
 const Solicitud = sequelize.define(
   'Solicitud',
   {
-    convocatoria: {
-      type: Sequelize.DATE,
+    typeRegistro: {
+      type: Sequelize.STRING,
       /* primaryKey: true, */
+    },
+    apellidoPaterno: {
+      type: Sequelize.STRING,
+    },
+    apellidoMaterno: {
+      type: Sequelize.STRING,
+    },
+    nombres: {
+      type: Sequelize.STRING,
+    },
+    fechaNacimiento: {
+      type: Sequelize.DATE,
+    },
+    lugarNacimiento: {
+      type: Sequelize.STRING,
+    },
+    nacionalidad: {
+      type: Sequelize.STRING,
+    },
+    estadoCivil: {
+      type: Sequelize.STRING,
+    },
+    calle: {
+      type: Sequelize.STRING,
+    },
+    noExterior: {
+      type: Sequelize.INTEGER,
+    },
+    noInterior: {
+      type: Sequelize.INTEGER,
+    },
+    colonia: {
+      type: Sequelize.STRING,
+    },
+    CP: {
+      type: Sequelize.INTEGER,
+    },
+    municipio: {
+      type: Sequelize.STRING,
+    },
+    estado: {
+      type: Sequelize.STRING,
+    },
+    telefono: {
+      type: Sequelize.STRING,
+    },
+    email: {
+      type: Sequelize.STRING,
+    },
+    cv: {
+      type: Sequelize.STRING,
     },
     fechaSolicitud: {
       type: Sequelize.DATE,
     },
-    isSubmmited: {
+    status: {
+      type: Sequelize.STRING,
+    },
+    isSubmited: {
       type: Sequelize.BOOLEAN,
     },
-    state: {
-      type: Sequelize.STRING,
-    },
     observaciones: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
     },
   },
   {

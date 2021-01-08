@@ -6,7 +6,6 @@ const {
   Libro,
   Desarrollo,
 } = require('../models/Producto');
-const productMock = require('../utils/mocks/products');
 
 class ProductsService {
   constructor() {}
@@ -81,7 +80,6 @@ class ProductsService {
     return product || {};
   }
   async createProduct(curp, product) {
-    /* const productCreated = await Promise.resolve(productMock[0]); */
     const productCreated = await Producto.create({ ...product, curp });
     if (product.congreso) {
       await artCongreso.create({
@@ -112,7 +110,6 @@ class ProductsService {
     return productCreated || {};
   }
   async updateProduct(id, product) {
-    /* const productUpdated = await Promise.resolve(productMock[0]); */
     const productUpdated = await Producto.update(product, {
       where: {
         id,
@@ -178,7 +175,6 @@ class ProductsService {
     return productUpdated || {};
   }
   async deleteProduct(id) {
-    /* const productDeleted = await Promise.resolve(productMock[0]); */
     const productDeleted = await Producto.destroy({ where: { id } });
     return productDeleted || 0;
   }
