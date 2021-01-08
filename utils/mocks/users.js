@@ -1,10 +1,10 @@
 const usersMock = [
   //USUARIO ALUMNO
   {
-    curp: 'VAPL000903HMZSDA5',
-    nombre: 'Luis',
-    apellidos: 'Vazquez Padilla',
-    email: 'luvazpa@gmail.com',
+    curp: 'FUSJ970123MMCNNM04',
+    nombre: 'Jimena',
+    apellidos: 'Fuentes Sanchez',
+    email: 'jimefuente@gmail.com',
     tipoUsuario: 'Alumno',
     password: '123456789',
     pregunta1: 'Marca de mi primer auto',
@@ -20,10 +20,10 @@ const usersMock = [
   //USUARIO PROFESOR
 
   {
-    curp: 'VAPL000903HMZSDA17',
-    nombre: 'Luis',
-    apellidos: 'Vazquez Vazquez',
-    email: 'luvazpa10@gmail.com',
+    curp: 'VELR970717MDFLPM01',
+    nombre: 'Romina',
+    apellidos: 'Velazquez Lopez',
+    email: 'romi@gmail.com',
     tipoUsuario: 'Profesor',
     password: '123456789',
     pregunta1: 'Marca de mi primer auto',

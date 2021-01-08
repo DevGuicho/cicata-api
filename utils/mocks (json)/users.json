@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "curp": "FUSJ970123MMCNNM04",
+      "nombre": "Jimena",
+      "apellidos": "Fuentes Sanchez",
+      "email": "jimefuente@gmail.com",
+      "tipoUsuario": "Alumno",
+      "password": "123456789",
+      "pregunta1": "Marca de mi primer auto",
+      "pregunta2": "Nombre de mi primer mascota",
+      "respuesta1": "Ford",
+      "respuesta2": "Kevin",
+      "alumno": {
+        "fechaIngreso": "2020-01-01",
+        "tesis": "Tesis 1"
+      }
+    },
+    {
+      "curp": "VELR970717MDFLPM01",
+      "nombre": "Romina",
+      "apellidos": "Velazquez Lopez",
+      "email": "romi@gmail.com",
+      "tipoUsuario": "Profesor",
+      "password": "123456789",
+      "pregunta1": "Marca de mi primer auto",
+      "pregunta2": "Nombre de mi primer mascota",
+      "respuesta1": "Ford",
+      "respuesta2": "Kevin",
+      "profesor": {
+        "lineaInvestigacion": "2020-01-01"
+      }
+    }
+  ]
+}

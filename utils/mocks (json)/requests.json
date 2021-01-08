@@ -1,0 +1,71 @@
+{
+  "requests": [
+    {
+      "typeRegistro": "Maestria",
+      "apellidoPaterno": "Gomez",
+      "apellidoMaterno": "Hernandez",
+      "nombres": "Roberto",
+      "fechaNacimiento": "2000-09-03",
+      "lugarNacimiento": "Ciudad de México",
+      "nacionalidad": "Mexicana",
+      "estadoCivil": "Soltero",
+      "calle": "Calle 3",
+      "noExterior": "140",
+      "colonia": "Pensador mexicano",
+      "CP": 57200,
+      "municipio": "Venustiano Carranza",
+      "estado": "Ciudad de Mexico",
+      "telefono": "5542478147",
+      "email": "rebehernadez@gmail.com",
+      "fechaSolicitud": "2021-08-01",
+      "status": "No validada",
+      "isSubmited": false,
+      "observaciones": "lorem ipsum dolo",
+      "maestria": {
+        "institucionPrevia": "CONACyT",
+        "paisInst": "Mexico",
+        "titulo": "Maestro en Ciencias",
+        "carrera": "Ingeniero telematico",
+        "expProfesional": "Citibanamex",
+        "expDocente": "UPIITA",
+        "cursoPropedeutico": true,
+        "year": "2015",
+        "motivacion": "Mejor salario"
+      }
+    },
+
+    {
+      "typeRegistro": "Doctorado",
+      "apellidoPaterno": "Chabelo",
+      "apellidoMaterno": "Lopez",
+      "nombres": "Javier",
+      "fechaNacimiento": "2000-09-03",
+      "lugarNacimiento": "Zacatecas",
+      "nacionalidad": "Mexicana",
+      "estadoCivil": "Casado",
+      "calle": "Calle Lógica",
+      "noExterior": "147",
+      "colonia": "La perla",
+      "CP": 57200,
+      "municipio": "Nezahualcoyotl",
+      "estado": "Mexico",
+      "telefono": "5569781236",
+      "email": "javi.lopez@gmail.com",
+      "fechaSolicitud": "2021-08-01",
+      "status": "No validada",
+      "isSubmited": false,
+      "observaciones": "lorem ipsum dolo",
+      "doctorado": {
+        "institucionPrevia": "CONACyT",
+        "paisInst": "Mexico",
+        "graduado": "Maestro en Ciencias",
+        "posgrado": "Ingeniero telematico",
+        "expProfesional": "Citibanamex",
+        "expDocente": "UPIITA",
+        "cursoPropedeutico": true,
+        "year": "2015",
+        "motivacion": "Mejor salario"
+      }
+    }
+  ]
+}
