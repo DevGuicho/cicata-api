@@ -1,4 +1,3 @@
-const usersMock = require('../utils/mocks/users');
 const UsuarioDG = require('../models/UsuarioDG');
 const UsuarioLogin = require('../models/UsuarioLogin');
 const Alumno = require('../models/Alumno');
@@ -75,12 +74,71 @@ class UsersService {
       return {};
     }
   }
-  async updateUser(id, user) {
-    const userUpdated = await Promise.resolve(usersMock[0]);
+  async updateUser(curp, user) {
+    const { password, alumno, profesor } = user;
+    if (password !== null) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await UsuarioLogin.update(
+        {
+          ...user,
+          password: hashedPassword,
+        },
+        {
+          where: {
+            curp,
+          },
+        }
+      );
+    } else {
+      await UsuarioLogin.update(
+        {
+          ...user,
+        },
+        {
+          where: {
+            curp,
+          },
+        }
+      );
+    }
+
+    const userUpdated = await UsuarioDG.update(
+      {
+        ...user,
+      },
+      {
+        where: {
+          curp,
+        },
+      }
+    );
+
+    if (user.alumno) {
+      await Alumno.update(
+        {
+          ...alumno,
+        },
+        {
+          where: {
+            curp,
+          },
+        }
+      );
+    } else if (user.profesor) {
+      await Profesor.update(
+        {
+          ...profesor,
+        },
+        {
+          where: {
+            curp,
+          },
+        }
+      );
+    }
     return userUpdated || {};
   }
   async deleteUser(id) {
-    /* const userDeleted = await Promise.resolve(usersMock[0]); */
     const userDeleted = await UsuarioDG.destroy({ where: { curp: id } });
     return userDeleted || 0;
   }

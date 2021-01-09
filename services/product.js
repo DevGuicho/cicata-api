@@ -127,7 +127,7 @@ class ProductsService {
         }
       );
     } else if (product.revista) {
-      await artRevista.create(
+      await artRevista.update(
         {
           ...product.revista,
         },
@@ -138,7 +138,7 @@ class ProductsService {
         }
       );
     } else if (product.type === 'capituloLibro') {
-      await capLibro.create(
+      await capLibro.update(
         {
           ...product.libro,
         },
@@ -149,7 +149,7 @@ class ProductsService {
         }
       );
     } else if (product.type === 'Libro') {
-      await Libro.create(
+      await Libro.update(
         {
           ...product.libro,
         },
@@ -160,7 +160,7 @@ class ProductsService {
         }
       );
     } else if (product.desarrollo) {
-      await Desarrollo.create(
+      await Desarrollo.update(
         {
           ...product.desarrollo,
         },
